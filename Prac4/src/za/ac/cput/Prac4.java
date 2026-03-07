@@ -2,12 +2,11 @@ package za.ac.cput;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import javax.swing.*;
 
 public class Prac4
         extends JFrame
-        implements ActionListener {
+        implements ActionListener, ItemListener {
 
     // have to get this part
     // labels
@@ -18,6 +17,7 @@ public class Prac4
     private JLabel addressLbl;
     private JLabel checkBoxLbl;
     private JLabel buttonsLbl;
+    private JLabel dobLbl;
 
     // textfields
     private JTextField nameTxt;
@@ -41,10 +41,14 @@ public class Prac4
     private JPanel panel2;
     private JPanel panel3;
     private JPanel panel4;
+    private JPanel panel5;
 
     // buttons
     private JButton submitBtn;
     private JButton resetBtn;
+    
+    // combo box
+    private JComboBox<String> cboTeams;
 
     // constructor
     public Prac4() {
@@ -61,12 +65,15 @@ public class Prac4
         panel2 = new JPanel();
         panel3 = new JPanel();
         panel4 = new JPanel();
+        panel5 = new JPanel();
+
 
         // rows, cols
-        panel1.setLayout(new GridLayout(6, 2));
+        panel1.setLayout(new GridLayout(7, 2));
         panel2.setLayout(new FlowLayout());
         panel3.setLayout(new FlowLayout());
         panel4.setLayout(new FlowLayout());
+        panel5.setLayout(new FlowLayout());
         
         // labels     
         nameLbl = new JLabel("Name");
@@ -76,6 +83,8 @@ public class Prac4
         addressLbl = new JLabel("Address");
         checkBoxLbl = new JLabel(" ");
         buttonsLbl = new JLabel("");
+        dobLbl = new JLabel("Birth date");
+        
 
         // textfields
         nameTxt = new JTextField(10);
@@ -96,6 +105,9 @@ public class Prac4
         // buttons
         submitBtn = new JButton("Submit");
         resetBtn = new JButton("Reset");
+        
+        // combo box
+        cboTeams = new JComboBox();
 
         // have to get this part
         //add(headingLbl);
@@ -116,6 +128,18 @@ public class Prac4
 
         panel1.add(addressLbl);
         panel1.add(addressTxt);
+        
+        
+        panel5.add(dobLbl);
+        panel5.add(cboTeams);
+        
+        cboTeams.addItem("-- make selection --");
+        cboTeams.addItem("Liverpool");
+        cboTeams.addItem("Arsenal");
+        cboTeams.addItem("Manchester United");
+        
+        panel1.add(panel5);
+        
         panel1.add(checkBoxLbl);
         panel1.add(messageBox);
        
@@ -128,6 +152,7 @@ public class Prac4
 
         submitBtn.addActionListener(this);
         resetBtn.addActionListener(this);
+        cboTeams.addItemListener(this);
 
         panel2.add(messageTxt);
         add(panel2);
@@ -171,5 +196,10 @@ public class Prac4
 
         }
 
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        
     }
 }// end of class
